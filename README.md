@@ -27,3 +27,13 @@
 | timer_t | Arithmetic type | POSIX timer ID |
 
 > (Arithmetic type == integer or floating type)
+
+## File descriptors (FD)
+
+| FD | PORPOSE | POSIX name | stdio stream |
+|----|---------|------------|--------------|
+| 0 | Standard input | STDIN_FILENO | stdin |
+| 1 | Standard output | STDOUT_FILENO | stdout |
+| 2 | Standard error | STDERR_FILENO | stderr |
+
+> are defined in <unistd.h>
