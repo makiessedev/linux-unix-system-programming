@@ -7,3 +7,23 @@
 ```
 
 *inotifywait is provided in the inotify-tools package*
+
+## System data types
+
+> Examples of system data types
+
+
+| Data type | POSIX type requirement | Description |
+|-----------|------------------------|-------------|
+| uid_t | Integer | User ID |
+| gid_t | Integer | Groups ID |
+| pid_t | Signed Integer | Process ID |
+| id_t | Integer | Generic ID type; can hold pid_t, gid_t, uid_t|
+| off_t | Signed Integer | File offset or size|
+| sigset_t | Integer or Structu     re | Signal set |
+| size_t | Unsigned Integer | Size of object (in bytes) |
+| ssize_t | Signed Integer | Size of object or error indication |
+| time_t | Integer/Real-floating | Time in seconds since Epoch |
+| timer_t | Arithmetic type | POSIX timer ID |
+
+> (Arithmetic type == integer or floating type)
