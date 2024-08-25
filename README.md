@@ -1,5 +1,7 @@
 # linux-unix-system-programming
 
+## Inotify
+
 ### Rather than writings lots of code before first compilation, use a frequent **edit-save-build** cycle to catch compiler errors early:
 
 ```shell
