@@ -67,4 +67,41 @@
 | `O_APPEND`   | Append data to the end of the file.                                                                    |
 | `O_ASYNC`    | Enable signal-driven I/O for the file descriptor. This flag allows asynchronous notifications for I/O operations. |
 
-> `man open to more flgas or details`
+> `man open to more flags or details`
+
+## lseek()
+
+```c
+#include <unistd.h>
+off_t   lseek(int fd, off_t offset, int whence);
+```
+
+* Adjusts offset for open file referred to by fd
+  * Some files types not seekable (pipes, sockets, etc)
+* **offset** and **whence** determine new position
+  * (**off_t** is an integer type)
+* Returns new file offset (counted from start of file)
+  
+* **offset**: new offset (byte position);
+* **whence**: how to interpret offset:
+* * SEEK_SET: relative start of file;
+* * SEEK_CUR: relative to current position;
+* * SEEK_END: relative to next byte after EOF
+* offset can be negative for SEEK_CUR and SEEK_END;
+
+### examples
+
+|||
+|-|-|
+| lseek(fd, 0, SEEK_SET) | start of file |
+| lseek(fd, 1000, SEEK_SET) | byte 1000 |
+| lseek(fd, 0, SEEK_END) | first byte past EOF |
+| lseek(fd, -1, SEEK_END) | Last byte of file |
+
+![lseek whence](./img/lseek_whence.png)
+
+<!-- ## File descriptor table
+
+Per-process table with one entry for each FD opened by process:
+* Flags controlling operation 
+ -->
