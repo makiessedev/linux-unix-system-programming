@@ -117,3 +117,40 @@ System wide table, one entry for each open file on system:
 * File status flags (from open());
 * Reference to inode object for file;
 * struct file in include/linux/fs.h
+
+## (In-memory) inode table
+System-wide table drawn from file inode information in filesystem:
+
+* File type (Regular file, FIFO, socket, ...);
+* File permissions;
+* Other file properties (size, timestamps, ...);
+* struct inode in include/linux/fs.h
+
+## Duplicated file descriptors (intraprocess)
+
+A process may have multiple FDs referring to same OFD
+
+* Archieved using dup() or dup2()
+
+## Duplicated file descriptors (between processes)
+
+Two process may have FDs referring to same OFD
+
+* Can occur as result of fork()
+
+## Distinct open file table entries referring to same file
+
+Two processes independently open()ed same file
+
+### Why does this matter?
+
+* Two different FDs referring to same OFD share file offset
+* * (File offset == location for next read()/write())
+* * Changes (read() | write() | lseek()) via one FD visible via other FD
+* * Applies to both intraprocess & interprocess sharing of OFD
+* Similar scope rules for stataus flags (O_APPEND, O_SYNC, ...)
+* * Changes via one FD are visible via other FD
+* * * (fcntl(F_SETFL) and fcntl(F_GETFL))
+* Conversely, changes to FD flags (held in FD table) are private to each process and FD
+* kcmp(2) KCMP_FILE operationn can be used to test if two FDs refer to same OFD
+* * Linux-specific
