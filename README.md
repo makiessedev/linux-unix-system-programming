@@ -103,4 +103,17 @@ off_t   lseek(int fd, off_t offset, int whence);
 ## File descriptor table
 
 Per-process table with one entry for each FD opened by process:
-* Flags controlling operation 
+
+* Flags controlling operation of FD (close-on-exec flag);
+* Reference to open file descriptor;
+* struct fdtable in include/linux/fdtable.h
+
+## Table of open file descriptor (open file table)
+
+System wide table, one entry for each open file on system:
+
+* File offset;
+* File access mode (R, W, R-W, from open());
+* File status flags (from open());
+* Reference to inode object for file;
+* struct file in include/linux/fs.h
