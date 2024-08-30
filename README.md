@@ -100,8 +100,7 @@ off_t   lseek(int fd, off_t offset, int whence);
 
 ![lseek whence](./img/lseek_whence.png)
 
-<!-- ## File descriptor table
+## File descriptor table
 
 Per-process table with one entry for each FD opened by process:
 * Flags controlling operation 
- -->
